@@ -14,7 +14,11 @@ namespace Binds
 	public:
 		template <class Vertex>
 		VertexBuffer( Graphics& gfx, const std::vector<Vertex>& vertices );
-		void Bind( Graphics& gfx ) override;
+		void Bind( Graphics& gfx ) override
+		{
+			const UINT offset = 0u;
+			pGetContext( gfx )->IASetVertexBuffers( 0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset );
+		}
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Buffer> pVertexBuffer;
 		UINT stride;

@@ -69,6 +69,7 @@ Graphics::Graphics( HWND hWnd )
 	THROW_FAILED_GFX(pSwapChain->GetBuffer( 0u, __uuidof( ID3D11Texture2D ), &pBackBuffer  ));
 	pRenderTarget = std::dynamic_pointer_cast<RenderTarget>(
 		std::make_shared<ExclusiveRenderTarget>( *this, pBackBuffer.Get() ) );
+	pRenderTarget->Bind( *this );
 }
 
 Graphics::~Graphics()

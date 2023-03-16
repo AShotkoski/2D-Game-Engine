@@ -8,7 +8,7 @@ namespace Binds
 	class IndexBuffer : public Bindable
 	{
 	public:
-		IndexBuffer( Graphics& gfx, const std::vector<unsigned short>& indices, std::string tag );
+		IndexBuffer( Graphics& gfx, const std::vector<unsigned short>& indices);
 		void Bind( Graphics& gfx ) override;
 		UINT GetIndicesCount() const noexcept;
 	private:

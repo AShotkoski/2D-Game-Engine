@@ -5,7 +5,7 @@
 namespace Binds
 {
 
-	IndexBuffer::IndexBuffer( Graphics& gfx, const std::vector<unsigned short>& indices, std::string tag )
+	IndexBuffer::IndexBuffer( Graphics& gfx, const std::vector<unsigned short>& indices )
 	{
 
 		nIndices = (UINT)indices.size();

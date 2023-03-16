@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <ExtensionsToDeleteOnClean>*.cso;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
+    <ExtensionsToDeleteOnClean>$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
     <IncludePath>$(ProjectDir)Src\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>

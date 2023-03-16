@@ -21,7 +21,7 @@ private:
 	float dt = 0.f;
 	float adj_dt = 0.f;
 	float timeFactor = 1.0f;
-
+	std::vector<std::unique_ptr<class Bindable>> binds;
 private:
 	static constexpr UINT ScreenWidth = 1272u;
 	static constexpr UINT ScreenHeight = 954u;
