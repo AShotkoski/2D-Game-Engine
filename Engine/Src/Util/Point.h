@@ -15,6 +15,14 @@ public:
 		x = *xy;
 		y = *( xy + 1 );
 	}
+	Point operator+( float rhs )
+	{
+		return Point{ x + rhs, y + rhs };
+	}
+	Point operator+( const Point& rhs )
+	{
+		return Point{ x + rhs.x, y + rhs.y };
+	}
 private:
 	float x;
 	float y;

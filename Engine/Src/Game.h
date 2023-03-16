@@ -2,6 +2,7 @@
 #include "Core/Window.h"
 #include "Util/FrameTimer.h"
 #include "Draw/PointDrawer.h"
+#include "Draw/Quad.h"
 
 class Game
 {
@@ -24,6 +25,7 @@ private:
 	float adj_dt = 0.f;
 	float timeFactor = 1.0f;
 	std::vector<std::unique_ptr<class Bindable>> binds;
+	Quad plane;
 private:
 	static constexpr UINT ScreenWidth = 1272u;
 	static constexpr UINT ScreenHeight = 954u;

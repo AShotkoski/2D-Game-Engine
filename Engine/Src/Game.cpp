@@ -9,6 +9,7 @@ namespace dx = DirectX;
 Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
+	, plane( gfx, { 0.25f,0 }, 0.1f )
 {
 }
 
@@ -51,4 +52,5 @@ void Game::UpdateLogic()
 void Game::DrawFrame()
 {
 	pointDrawer.Draw( gfx );
+	plane.Draw( gfx );
 }

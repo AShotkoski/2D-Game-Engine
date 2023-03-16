@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Draw\Quad.h" />
     <ClInclude Include="Src\Binds\ConstantBuffers.h" />
     <ClInclude Include="Src\Draw\Drawable.h" />
     <ClInclude Include="Src\Draw\PointDrawer.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="ThirdParty\Loguru\loguru.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Draw\Quad.cpp" />
     <ClCompile Include="Src\Draw\PointDrawer.cpp" />
     <ClCompile Include="Src\Binds\GraphicsResource.cpp" />
     <ClCompile Include="Src\Binds\IndexBuffer.cpp" />
