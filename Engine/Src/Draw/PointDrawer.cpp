@@ -55,6 +55,7 @@ void PointDrawer::_Init(Graphics& gfx)
 void PointDrawer::_AddPoint( Point pt, Graphics& gfx )
 {
 	points.push_back( std::move( pt ) );
-	pVertexBuffer.release();
+	auto old = pVertexBuffer.release();
+	delete old;
 	pVertexBuffer = std::make_unique<Binds::VertexBuffer>( gfx, points );
 }
