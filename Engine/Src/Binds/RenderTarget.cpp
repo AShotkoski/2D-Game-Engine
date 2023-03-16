@@ -1,5 +1,4 @@
 #include "RenderTarget.h"
-#include "DepthStencil.h"
 #include <Macros.h>
 #include <log.h>
 
@@ -58,10 +57,6 @@ void RenderTarget::Bind( Graphics& gfx )
 	BindAsRT( gfx, nullptr );
 }
 
-void RenderTarget::Bind( Graphics& gfx, const DepthStencil& ds )
-{
-	BindAsRT( gfx, ds.pDepthStencilView.Get()  );
-}
 
 void RenderTarget::BindAsRT( Graphics& gfx, ID3D11DepthStencilView* pDS ) const
 {

@@ -1,12 +1,9 @@
 #include "Graphics.h"
 #include "Macros.h"
-#include "../ThirdParty/ImGui/imgui_impl_dx11.h"
-#include "../ThirdParty/ImGui/imgui_impl_win32.h"
 #include <sstream>
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
 #include <d3d11sdklayers.h>
-#include <Binds/DepthStencil.h>
 #include <Binds/RenderTarget.h>
 
 #pragma comment(lib,"d3d11.lib")
@@ -16,8 +13,6 @@ namespace WRL = Microsoft::WRL;
 namespace dx = DirectX;
 
 Graphics::Graphics( HWND hWnd )
-	:
-	projection(DirectX::XMMatrixIdentity())
 {
 	// Used for erro chedcking
 	HRESULT hr;
@@ -69,10 +64,6 @@ Graphics::Graphics( HWND hWnd )
 		nullptr,
 		&pContext ) );
 
-	// IMGUI
-	if constexpr ( globals::enableImGui )
-		ImGui_ImplDX11_Init( pDevice.Get(), pContext.Get() );
-
 	// Get back buffer tex
 	WRL::ComPtr<ID3D11Texture2D> pBackBuffer;
 	THROW_FAILED_GFX(pSwapChain->GetBuffer( 0u, __uuidof( ID3D11Texture2D ), &pBackBuffer  ));
@@ -82,19 +73,11 @@ Graphics::Graphics( HWND hWnd )
 
 Graphics::~Graphics()
 {
-	if constexpr ( globals::enableImGui )
-		ImGui_ImplDX11_Shutdown();
 }
 
 void Graphics::BeginFrame()
 {
-	// Handle ImGui
-	if constexpr ( globals::enableImGui )
-	{
-		ImGui_ImplDX11_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
-	}
+	pRenderTarget->Clear( *this );
 }
 
 void Graphics::Draw( UINT vertexCount, UINT start )
@@ -114,15 +97,6 @@ std::shared_ptr<RenderTarget> Graphics::pGetRenderTarget()
 
 void Graphics::EndFrame()
 {
-	// Handle ImGui
-	if constexpr( globals::enableImGui )
-	{
-		ImGui::Render();
-		ImGui_ImplDX11_RenderDrawData( ImGui::GetDrawData() );
-
-		ImGui::EndFrame();
-	}
-
 	HRESULT hr;
 
 	// Present back buffer
@@ -138,6 +112,7 @@ void Graphics::EndFrame()
 			throw GFX_EXCEPT( hr );
 		}
 	}
+	pRenderTarget->Bind( *this );
 }
 
 UINT Graphics::GetWidth() const
@@ -148,21 +123,6 @@ UINT Graphics::GetWidth() const
 UINT Graphics::GetHeight() const
 {
 	return Height;
-}
-
-void Graphics::SetProjection( DirectX::FXMMATRIX proj ) noexcept
-{
-	projection = proj;
-}
-
-DirectX::XMMATRIX Graphics::GetProjection() const noexcept
-{
-	return projection;
-}
-
-Camera& Graphics::GetCamera() noexcept
-{
-	return cam;
 }
 
 Graphics::Exception::Exception( int line, const std::string& file, HRESULT hr )

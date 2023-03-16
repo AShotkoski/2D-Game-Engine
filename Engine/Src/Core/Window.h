@@ -3,7 +3,7 @@
 #include "Win.h"
 #include "BaseException.h"
 #include "Macros.h"
-#include "Graphics/Graphics.h"
+#include "Graphics.h"
 #include "Keyboard.h"
 #include "Mouse.h"
 #include <string>

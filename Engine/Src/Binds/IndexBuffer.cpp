@@ -1,6 +1,5 @@
 #include "IndexBuffer.h"
 #include "Macros.h"
-#include "BindableCodex.h"
 #include <cassert>
 
 namespace Binds
@@ -43,18 +42,5 @@ namespace Binds
 		return nIndices;
 	}
 
-	std::string IndexBuffer::GenerateUID( const std::vector<unsigned short>& indices, std::string tag )
-	{
-		using namespace std::string_literals;
-		return std::string( typeid( IndexBuffer ).name() + "_"s + tag );
-	}
-
-	std::shared_ptr<IndexBuffer> IndexBuffer::Resolve(
-		Graphics&                          gfx,
-		const std::vector<unsigned short>& indices,
-		std::string                        tag )
-	{
-		return Codex::Resolve<IndexBuffer>(gfx, indices, tag);
-	}
 
 };

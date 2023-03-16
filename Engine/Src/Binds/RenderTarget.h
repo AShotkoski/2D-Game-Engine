@@ -1,19 +1,17 @@
 #pragma once
-#include <Graphics/Graphics.h>
-#include <Graphics/BufferResource.h>
+#include <Graphics.h>
+#include <Binds/Bindable.h>
 
-class DepthStencil;
 
-class RenderTarget : public BufferResource
+class RenderTarget : public Bindable
 {
 public:
-	virtual void Clear( Graphics& gfx ) const override;
+	void Clear( Graphics& gfx ) const;
 	virtual void Bind( Graphics& gfx ) override;
-	void Bind( Graphics& gfx, const DepthStencil& ds );
 protected:
 	RenderTarget( Graphics& gfx, UINT width, UINT height );
 	RenderTarget( Graphics& gfx, ID3D11Texture2D* pTex );
-	virtual void BindAsRT( Graphics& gfx, ID3D11DepthStencilView* pDS ) const override;
+	virtual void BindAsRT( Graphics& gfx, ID3D11DepthStencilView* pDS ) const;
 	ID3D11RenderTargetView* pGetTargetView() const;
 private:	
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTargetView;

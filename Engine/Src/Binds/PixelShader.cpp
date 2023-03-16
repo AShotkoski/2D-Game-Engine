@@ -1,8 +1,7 @@
 #include "PixelShader.h"
 #include "Macros.h"
-#include "BindableCodex.h"
 #include "Util/GeneralUtilities.h"
-#include "log.h"
+#include <log.h>
 #include <filesystem>
 #include <d3dcompiler.h>
 
@@ -34,16 +33,5 @@ namespace Binds
 		pGetContext( gfx )->PSSetShader( pPixelShader.Get(), nullptr, 0u );
 	}
 
-	std::string PixelShader::GenerateUID( const std::wstring path )
-	{
-		using namespace std::string_literals;
-		std::string pathA = Util::WStringToString(path);
-		return std::string( typeid( PixelShader ).name() + "_"s + pathA );
-	}
-
-	std::shared_ptr<PixelShader> PixelShader::Resolve( Graphics& gfx, const std::wstring path )
-	{
-		return Codex::Resolve<PixelShader>( gfx, path );
-	}
 
 };

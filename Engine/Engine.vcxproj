@@ -57,6 +57,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -71,6 +72,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -81,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Binds\Bindable.h" />
-    <ClInclude Include="Src\Binds\DepthStencil.h" />
+    <ClInclude Include="Src\Binds\GraphicsResource.h" />
     <ClInclude Include="Src\Binds\IndexBuffer.h" />
     <ClInclude Include="Src\Binds\InputLayout.h" />
     <ClInclude Include="Src\Binds\PixelShader.h" />
@@ -92,7 +94,6 @@
     <ClInclude Include="Src\Core\BaseException.h" />
     <ClInclude Include="Src\Core\Keyboard.h" />
     <ClInclude Include="Src\Core\Mouse.h" />
-    <ClInclude Include="Src\Core\resource.h" />
     <ClInclude Include="Src\Core\Window.h" />
     <ClInclude Include="Src\Game.h" />
     <ClInclude Include="Src\Graphics.h" />
@@ -105,15 +106,15 @@
     <ClInclude Include="Src\Util\MathUtil.h" />
     <ClInclude Include="Src\Util\NumberFactory.h" />
     <ClInclude Include="Src\Win.h" />
+    <ClInclude Include="ThirdParty\Loguru\loguru.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Binds\DepthStencil.cpp" />
+    <ClCompile Include="Src\Binds\GraphicsResource.cpp" />
     <ClCompile Include="Src\Binds\IndexBuffer.cpp" />
     <ClCompile Include="Src\Binds\InputLayout.cpp" />
     <ClCompile Include="Src\Binds\PixelShader.cpp" />
     <ClCompile Include="Src\Binds\RenderTarget.cpp" />
     <ClCompile Include="Src\Binds\Topology.cpp" />
-    <ClCompile Include="Src\Binds\VertexBuffer.cpp" />
     <ClCompile Include="Src\Binds\VertexShader.cpp" />
     <ClCompile Include="Src\Core\BaseException.cpp" />
     <ClCompile Include="Src\Core\Keyboard.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="Src\Graphics.cpp" />
     <ClCompile Include="Src\LoguruManager.cpp" />
     <ClCompile Include="Src\Util\FrameTimer.cpp" />
+    <ClCompile Include="ThirdParty\Loguru\loguru.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
