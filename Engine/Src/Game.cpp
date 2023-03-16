@@ -38,11 +38,11 @@ void Game::UpdateLogic()
 		{
 			if ( e->GetVirtualKey() == 'A' )
 			{
-				pointDrawer.AddPoint( { 0.5f,0.5f }, gfx );
+				pointDrawer.AddPoint( { 0.5f,0.5f }, Colors::OrangeRed, gfx );
 			}
 			if ( e->GetVirtualKey() == 'S' )
 			{
-				pointDrawer.AddPoint( { -0.5f,-0.5f }, gfx );
+				pointDrawer.AddPoint( { -0.5f,-0.5f }, Colors::Blue, gfx );
 			}
 		}
 	}

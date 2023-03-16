@@ -166,7 +166,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Src\VertexShader.hlsl" />
-    <FxCompile Include="Src\PixelShader.hlsl" />
+    <FxCompile Include="Src\PointVS.hlsl" />
+    <FxCompile Include="Src\PointPS.hlsl" />
   </ItemGroup>
 </Project>
