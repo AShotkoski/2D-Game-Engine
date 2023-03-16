@@ -82,6 +82,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Binds\ConstantBuffers.h" />
+    <ClInclude Include="Src\Draw\Drawable.h" />
+    <ClInclude Include="Src\Draw\PointDrawer.h" />
     <ClInclude Include="Src\Binds\Bindable.h" />
     <ClInclude Include="Src\Binds\GraphicsResource.h" />
     <ClInclude Include="Src\Binds\IndexBuffer.h" />
@@ -105,10 +108,12 @@
     <ClInclude Include="Src\Util\GeneralUtilities.h" />
     <ClInclude Include="Src\Util\MathUtil.h" />
     <ClInclude Include="Src\Util\NumberFactory.h" />
+    <ClInclude Include="Src\Util\Point.h" />
     <ClInclude Include="Src\Win.h" />
     <ClInclude Include="ThirdParty\Loguru\loguru.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Draw\PointDrawer.cpp" />
     <ClCompile Include="Src\Binds\GraphicsResource.cpp" />
     <ClCompile Include="Src\Binds\IndexBuffer.cpp" />
     <ClCompile Include="Src\Binds\InputLayout.cpp" />

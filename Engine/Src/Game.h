@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Window.h"
 #include "Util/FrameTimer.h"
+#include "Draw/PointDrawer.h"
 
 class Game
 {
@@ -17,6 +18,7 @@ private:
 	Window wnd;
 	Graphics& gfx;
 	FrameTimer ft;
+	PointDrawer pointDrawer;
 private:
 	float dt = 0.f;
 	float adj_dt = 0.f;

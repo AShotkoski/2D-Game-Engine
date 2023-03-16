@@ -19,7 +19,8 @@ namespace Binds
 			const UINT offset = 0u;
 			pGetContext( gfx )->IASetVertexBuffers( 0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset );
 		}
-	private:
+	protected:
+		VertexBuffer() = default;
 		Microsoft::WRL::ComPtr<ID3D11Buffer> pVertexBuffer;
 		UINT stride;
 	};
@@ -49,4 +50,42 @@ namespace Binds
 		stride = sizeof( Vertex );
 	}
 	
+	/******************** Dynamic ****************************************************************/
+	template <class Vertex>
+	class DynamicVertexBuffer : public VertexBuffer
+	{
+	public:
+		DynamicVertexBuffer( Graphics& gfx, const std::vector<Vertex>& vertices )
+		{
+			assert( vertices.size() > 0);
+			// Error checker
+			HRESULT hr;
+
+			D3D11_SUBRESOURCE_DATA srd = { 0 };
+			srd.pSysMem = vertices.data();
+			srd.SysMemPitch = 0u; // Texture
+			srd.SysMemSlicePitch = 0u;
+
+			D3D11_BUFFER_DESC bd = { 0 };
+			bd.ByteWidth = (UINT)( sizeof( Vertex ) * vertices.size() );
+			bd.Usage = D3D11_USAGE_DYNAMIC;
+			bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+			bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+			bd.MiscFlags = 0u;
+			bd.StructureByteStride = sizeof( Vertex );
+
+			THROW_FAILED_GFX( pGetDevice( gfx )->CreateBuffer( &bd, &srd, &pVertexBuffer ) );
+			// Store stride based off templated vertex for use in binding
+			stride = sizeof( Vertex );
+		}
+		void Update( Graphics& gfx, const std::vector<Vertex>& vertices ) const
+		{
+			// Get data on const buffer and lock gpu from accessing it to write data
+			D3D11_MAPPED_SUBRESOURCE msr;
+			pGetContext( gfx )->Map( pVertexBuffer.Get(), 0u, D3D11_MAP_WRITE_DISCARD,
+									 0u, &msr );
+			memcpy( msr.pData, vertices.data(), ( sizeof( Vertex ) * vertices.size() ) );
+			pGetContext( gfx )->Unmap( pVertexBuffer.Get(), 0u );
+		}
+	};
 };

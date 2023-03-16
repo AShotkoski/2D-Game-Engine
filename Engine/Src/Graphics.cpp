@@ -1,10 +1,14 @@
 #include "Graphics.h"
 #include "Macros.h"
+#include "Util/Point.h"
+#include "Util/Colors.h"
 #include <sstream>
+#include <vector>
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
 #include <d3d11sdklayers.h>
 #include <Binds/RenderTarget.h>
+
 
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
@@ -125,6 +129,7 @@ UINT Graphics::GetHeight() const
 {
 	return Height;
 }
+
 
 Graphics::Exception::Exception( int line, const std::string& file, HRESULT hr )
 	:

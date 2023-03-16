@@ -7,6 +7,8 @@
 #include <memory>
 
 class RenderTarget;
+class Point;
+class Color;
 
 class Graphics
 {
@@ -48,7 +50,6 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
 	Microsoft::WRL::ComPtr<IDXGISwapChain>      pSwapChain;
 	std::shared_ptr<RenderTarget> pRenderTarget;
-
 private:
 	/********************** Parameters *******************/
 	static constexpr bool enableVSync = true;
