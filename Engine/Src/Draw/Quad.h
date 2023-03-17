@@ -12,6 +12,7 @@ public:
 	virtual void Draw( Graphics& gfx ) const override;
 	void SetPos( Point newPos );
 	Point GetPos() const;
+	void MarkDirty();
 private:
 	mutable bool dirty = false;
 	UINT idxCount;

@@ -35,7 +35,6 @@ void Camera::UpdatePosition( DirectX::XMFLOAT2 dPos, float dt )
 {
 	const float MoveSpeed = this->MoveSpeed * dt;
 
-	// Update dPos to care about direction the camera is facing and the movespeed
 	XMStoreFloat2( &dPos, XMVector2Transform(
 		XMLoadFloat2( &dPos ),
 		XMMatrixScaling( MoveSpeed, MoveSpeed, MoveSpeed )
@@ -56,6 +55,13 @@ void Camera::UpdateMovementSpeed( float factor )
 	MoveSpeed *= factor;
 }
 
+bool Camera::isDirty() const
+{
+	bool olddirty = dirty;
+	dirty = false;
+	return olddirty;
+}
+
 void Camera::CalculateMatrices()
 {
 	// Rotate where we want to look
@@ -64,4 +70,5 @@ void Camera::CalculateMatrices()
 	auto xmpos = XMLoadFloat2( &Position );
 
 	view = XMMatrixLookAtLH( xmpos, base + xmpos, XMVectorSet( 0, 1.f, 0, 0.f ) );
+	dirty = true;
 }

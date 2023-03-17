@@ -27,6 +27,8 @@ void Drawable::AddBind( std::unique_ptr<Bindable> bind )
 
 void Drawable::BindAll( Graphics& gfx ) const
 {
+	if ( gfx.camera.isDirty() )
+		const_cast<Drawable*>(this)->UpdateTransformBuffer( gfx );
 	for ( auto& b : BindPtrs )
 	{
 		b->Bind( gfx );
@@ -39,6 +41,6 @@ void Drawable::UpdateTransformBuffer(Graphics& gfx)
 	using namespace DirectX;
 	auto vecpos = XMVectorSet( Position.x, Position.y, 0, 0 );
 	CBData.model = XMMatrixTranspose( XMMatrixTranslationFromVector( vecpos ) );
-	CBData.viewproj = gfx.camera.GetMatrixWithProjection();
+	CBData.viewproj = XMMatrixTranspose( gfx.camera.GetMatrixWithProjection());
 	pTransformCB->Update( gfx, CBData );
 }

@@ -55,6 +55,22 @@ void Game::UpdateLogic()
 	{
 		plane.SetPos( plane.GetPos() + Point{ dt * 1.f,0 } );
 	}
+	else if ( wnd.kbd.KeyIsPressed( 'I' ) )
+	{
+		gfx.camera.UpdatePosition( {0, 1.f }, dt);
+	}
+	else if ( wnd.kbd.KeyIsPressed( 'K' ) )
+	{
+		gfx.camera.UpdatePosition( {0, -1.f }, dt);
+	}
+	else if ( wnd.kbd.KeyIsPressed( 'J' ) )
+	{
+		gfx.camera.UpdatePosition( {-1.f, 0 }, dt);
+	}
+	else if ( wnd.kbd.KeyIsPressed( 'L' ) )
+	{
+		gfx.camera.UpdatePosition( {1.f, 0 }, dt);
+	}
 }
 
 void Game::DrawFrame()

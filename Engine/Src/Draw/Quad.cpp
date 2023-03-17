@@ -44,3 +44,8 @@ Point Quad::GetPos() const
 {
 	return Position;
 }
+
+void Quad::MarkDirty()
+{
+	dirty = true;
+}

@@ -12,13 +12,14 @@ public:
 	void UpdatePosition( DirectX::XMFLOAT2 dPos, float dt );
 	DirectX::XMFLOAT2 GetPosition( ) const;
 	void UpdateMovementSpeed( float factor );
+	bool isDirty() const;
 private:
 	void CalculateMatrices();
 private:
+	mutable bool dirty = false;
 	DirectX::XMMATRIX view = DirectX::XMMatrixIdentity();
 	DirectX::XMMATRIX projection = DirectX::XMMatrixIdentity();
 	DirectX::XMFLOAT2 Position;
-	// Only adjust the numerator
-	float MoveSpeed = 15.f;
+	float MoveSpeed = 0.85f;
 };
 
