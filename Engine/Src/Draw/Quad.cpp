@@ -11,14 +11,6 @@
 Quad::Quad( Graphics& gfx, Point center, float size )
 	: Drawable(gfx)
 {
-	AddBind( std::make_unique<Binds::Topology>( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
-	AddBind( std::make_unique<Binds::PixelShader>( gfx, L"PixelShader.cso"));
-	auto vs = std::make_unique<Binds::VertexShader>( gfx, L"VertexShader.cso" );
-	auto vsByteCode = vs->pGetBytecode();
-	std::vector<D3D11_INPUT_ELEMENT_DESC> inputDesc;
-	inputDesc.push_back( { "POSITION", 0u, DXGI_FORMAT_R32G32_FLOAT, 0u, 0u, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA, 0u } );
-	AddBind( std::make_unique <Binds::InputLayout>( gfx, std::move( inputDesc ), *vsByteCode ) );
-	AddBind( std::move( vs ) );
 	// Make vertices
 	std::vector<Point> verts;
 	verts.emplace_back( center + Point{-size, size} );
@@ -33,6 +25,22 @@ Quad::Quad( Graphics& gfx, Point center, float size )
 
 void Quad::Draw( Graphics& gfx ) const
 {
+	if ( dirty )
+	{
+		const_cast<Quad*>( this )->UpdateTransformBuffer( gfx );
+		dirty = false;
+	}
 	BindAll( gfx );
 	gfx.DrawIndexed( idxCount );
+}
+
+void Quad::SetPos( Point newPos )
+{
+	Position = newPos;
+	dirty = true;
+}
+
+Point Quad::GetPos() const
+{
+	return Position;
 }

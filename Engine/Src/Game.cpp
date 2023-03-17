@@ -36,17 +36,25 @@ void Game::UpdateLogic()
 	{
 		if ( e->GetType() == Keyboard::Event::Keydown )
 		{
-			if ( e->GetVirtualKey() == 'A' )
+			if ( e->GetVirtualKey() == 'E' )
 			{
 				pointDrawer.AddPoint( { 0.5f,0.5f }, Colors::OrangeRed, gfx );
 			}
-			if ( e->GetVirtualKey() == 'S' )
+			if ( e->GetVirtualKey() == 'R' )
 			{
 				pointDrawer.AddPoint( { -0.5f,-0.5f }, Colors::Blue, gfx );
 			}
+
 		}
 	}
-	
+	if ( wnd.kbd.KeyIsPressed( 'A' ) )
+	{
+		plane.SetPos( plane.GetPos() + Point{ dt * -1.f,0 } );
+	}
+	else if ( wnd.kbd.KeyIsPressed( 'D' ) )
+	{
+		plane.SetPos( plane.GetPos() + Point{ dt * 1.f,0 } );
+	}
 }
 
 void Game::DrawFrame()

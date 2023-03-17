@@ -23,7 +23,7 @@ public:
 	{
 		return Point{ x + rhs.x, y + rhs.y };
 	}
-private:
+public:
 	float x;
 	float y;
 };

@@ -9,7 +9,7 @@ namespace Binds
 	class ConstantBuffer : public Bindable
 	{
 	public:
-		ConstantBuffer( Graphics& gfx, const CB& consts,std::string tag, UINT slot )
+		ConstantBuffer( Graphics& gfx, const CB& consts, UINT slot )
 			:
 			ConstantBuffer( gfx, slot )
 		{

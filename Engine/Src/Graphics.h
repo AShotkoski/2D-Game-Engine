@@ -1,6 +1,7 @@
 #pragma once
 #include "Win.h"
 #include "Core/BaseException.h"
+#include "Camera.h"
 #include <d3d11.h>
 #include <wrl.h>
 #include <DirectXMath.h>
@@ -41,6 +42,8 @@ public:
 	void EndFrame();
 	UINT GetWidth() const;
 	UINT GetHeight() const;
+public:
+	Camera camera;
 private:
 	// Dimensions of client area
 	UINT Width;
@@ -52,7 +55,7 @@ private:
 	std::shared_ptr<RenderTarget> pRenderTarget;
 private:
 	/********************** Parameters *******************/
-	static constexpr bool enableVSync = true;
+	static constexpr bool enableVSync = false;
 
 };
 
