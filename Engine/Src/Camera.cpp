@@ -8,10 +8,21 @@ Camera::Camera()
 	Reset();
 }
 
+void Camera::SetAspectRatio( float aspect_ratio )
+{
+	// Setup projection
+	projection = DirectX::XMMatrixOrthographicLH( 1.f, 1.f / aspect_ratio, 0, 2.f );
+}
+
 DirectX::XMMATRIX Camera::GetMatrix() const noexcept
 {
 	return view;
-};
+}
+DirectX::XMMATRIX Camera::GetMatrixWithProjection() const noexcept
+{
+	return view * projection;
+}
+;
 
 void Camera::Reset() noexcept
 {

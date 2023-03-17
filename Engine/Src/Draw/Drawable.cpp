@@ -7,7 +7,7 @@
 #include <Binds/InputLayout.h>
 
 Drawable::Drawable( Graphics& gfx ) 
-	: CBData{  DirectX::XMMatrixTranspose(DirectX::XMMatrixIdentity()), gfx.camera.GetMatrix() }
+	: CBData{  DirectX::XMMatrixTranspose(DirectX::XMMatrixIdentity()), gfx.camera.GetMatrixWithProjection() }
 {
 	pTransformCB = std::make_unique<Binds::VertexConstantBuffer<ConstBuffer>>( gfx,CBData, 0u );
 	AddBind( std::make_unique<Binds::Topology>( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
@@ -39,6 +39,6 @@ void Drawable::UpdateTransformBuffer(Graphics& gfx)
 	using namespace DirectX;
 	auto vecpos = XMVectorSet( Position.x, Position.y, 0, 0 );
 	CBData.model = XMMatrixTranspose( XMMatrixTranslationFromVector( vecpos ) );
-	CBData.view = gfx.camera.GetMatrix();
+	CBData.viewproj = gfx.camera.GetMatrixWithProjection();
 	pTransformCB->Update( gfx, CBData );
 }

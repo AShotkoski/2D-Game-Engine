@@ -13,7 +13,7 @@ class Drawable
 	struct ConstBuffer
 	{
 		DirectX::XMMATRIX model;
-		DirectX::XMMATRIX view;
+		DirectX::XMMATRIX viewproj;
 	};
 public:
 	virtual void Draw( Graphics& gfx ) const = 0;

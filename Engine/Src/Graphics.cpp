@@ -28,6 +28,8 @@ Graphics::Graphics( HWND hWnd )
 	Width = clientRect.right;
 	Height = clientRect.bottom;
 
+	// set camera aspect ratio
+	camera.SetAspectRatio( (float)Width / (float)Height );
 
 	// Setup SwapChain parameters
 	DXGI_SWAP_CHAIN_DESC sd = { 0 };

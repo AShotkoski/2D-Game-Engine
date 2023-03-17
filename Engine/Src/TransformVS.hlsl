@@ -1,12 +1,12 @@
 cbuffer cb : register(b0)
 {
     matrix model;
-    matrix view;
+    matrix viewproj;
 };
 
 float4 main( float2 pos : POSITION ) : SV_POSITION
 {
-    matrix modelview = mul(model, view);
-    float3 trans = mul(float4(pos, 0, 1), modelview);
+    matrix modelviewproj = mul(model, viewproj);
+    float3 trans = mul(float4(pos, 0, 1), modelviewproj);
     return float4(trans, 1);
 }
