@@ -62,6 +62,25 @@ bool Camera::isDirty() const
 	return olddirty;
 }
 
+float Camera::GetZoom() const
+{
+	return zoom;
+}
+
+void Camera::SetZoom( float zoom_amount )
+{
+	zoom = std::max(0.f, zoom_amount);
+	CalculateMatrices();
+}
+
+void Camera::UpdateZoom( float change_zoom )
+{
+	change_zoom = 1.f + (change_zoom);
+	zoom = zoom * change_zoom;
+	zoom = std::max( 0.f, zoom );
+	CalculateMatrices();
+}
+
 void Camera::CalculateMatrices()
 {
 	// Rotate where we want to look
@@ -69,6 +88,7 @@ void Camera::CalculateMatrices()
 
 	auto xmpos = XMLoadFloat2( &Position );
 
-	view = XMMatrixLookAtLH( xmpos, base + xmpos, XMVectorSet( 0, 1.f, 0, 0.f ) );
+	view = XMMatrixLookAtLH( xmpos, base + xmpos, XMVectorSet( 0, 1.f, 0, 0.f ) ) * 
+		XMMatrixScaling(zoom,zoom,1.f);
 	dirty = true;
 }

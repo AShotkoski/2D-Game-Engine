@@ -117,6 +117,7 @@
     <ClInclude Include="Src\Util\MathUtil.h" />
     <ClInclude Include="Src\Util\NumberFactory.h" />
     <ClInclude Include="Src\Util\Point.h" />
+    <ClInclude Include="Src\Util\Rect.h" />
     <ClInclude Include="Src\Win.h" />
     <ClInclude Include="ThirdParty\Loguru\loguru.hpp" />
   </ItemGroup>

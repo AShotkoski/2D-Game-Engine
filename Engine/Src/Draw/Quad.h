@@ -1,5 +1,6 @@
 #pragma once
 #include "Drawable.h"
+#include <Util/Rect.h>
 
 class Point;
 
@@ -7,8 +8,7 @@ class Quad : public Drawable
 {
 	using UINT = unsigned int;
 public:
-	// todo make it not be a square lmao
-	Quad( Graphics& gfx, Point center, float size );
+	Quad( Graphics& gfx, Rect rect );
 	virtual void Draw( Graphics& gfx ) const override;
 	void SetPos( Point newPos );
 	Point GetPos() const;

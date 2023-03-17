@@ -40,7 +40,9 @@ void Drawable::UpdateTransformBuffer(Graphics& gfx)
 {
 	using namespace DirectX;
 	auto vecpos = XMVectorSet( Position.x, Position.y, 0, 0 );
-	CBData.model = XMMatrixTranspose( XMMatrixTranslationFromVector( vecpos ) );
+	CBData.model = XMMatrixTranspose( XMMatrixScaling(ScaleWidth,ScaleHeight,1.f) *
+									  XMMatrixRotationRollPitchYaw(0.f, 0.f, Rotation) *
+									  XMMatrixTranslationFromVector( vecpos ) );
 	CBData.viewproj = XMMatrixTranspose( gfx.camera.GetMatrixWithProjection());
 	pTransformCB->Update( gfx, CBData );
 }

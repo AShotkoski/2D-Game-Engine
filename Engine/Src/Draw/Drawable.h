@@ -24,6 +24,9 @@ protected:
 	virtual void UpdateTransformBuffer(Graphics& gfx);
 protected:
 	Point Position{ 0,0 };
+	float Rotation = 0.f;
+	float ScaleWidth = 1.f;
+	float ScaleHeight = 1.f;
 private:
 	ConstBuffer CBData;
 	std::vector<std::unique_ptr<Bindable>> BindPtrs;

@@ -13,6 +13,10 @@ public:
 	DirectX::XMFLOAT2 GetPosition( ) const;
 	void UpdateMovementSpeed( float factor );
 	bool isDirty() const;
+	float GetZoom() const;
+	void SetZoom( float zoom_amount );
+	// Position for increase, negative decrease
+	void UpdateZoom( float change_zoom );
 private:
 	void CalculateMatrices();
 private:
@@ -20,6 +24,7 @@ private:
 	DirectX::XMMATRIX view = DirectX::XMMatrixIdentity();
 	DirectX::XMMATRIX projection = DirectX::XMMatrixIdentity();
 	DirectX::XMFLOAT2 Position;
-	float MoveSpeed = 0.85f;
+	float MoveSpeed = 8.5f;
+	float zoom = 0.05f;
 };
 

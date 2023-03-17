@@ -9,7 +9,7 @@ namespace dx = DirectX;
 Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
-	, plane( gfx, { 0.25f,0 }, 0.1f )
+	, plane( gfx, Rect::Make({0,0 },5.f,0.1f))
 {
 }
 
@@ -47,15 +47,8 @@ void Game::UpdateLogic()
 
 		}
 	}
-	if ( wnd.kbd.KeyIsPressed( 'A' ) )
-	{
-		plane.SetPos( plane.GetPos() + Point{ dt * -1.f,0 } );
-	}
-	else if ( wnd.kbd.KeyIsPressed( 'D' ) )
-	{
-		plane.SetPos( plane.GetPos() + Point{ dt * 1.f,0 } );
-	}
-	else if ( wnd.kbd.KeyIsPressed( 'I' ) )
+
+	if ( wnd.kbd.KeyIsPressed( 'I' ) )
 	{
 		gfx.camera.UpdatePosition( {0, 1.f }, dt);
 	}
@@ -70,6 +63,17 @@ void Game::UpdateLogic()
 	else if ( wnd.kbd.KeyIsPressed( 'L' ) )
 	{
 		gfx.camera.UpdatePosition( {1.f, 0 }, dt);
+	}
+	while ( auto e = wnd.mouse.GetEvent() )
+	{
+		if ( e->GetType() == Mouse::Event::ScrollDown )
+		{
+			gfx.camera.UpdateZoom( -0.1f );
+		}
+		else if ( e->GetType() == Mouse::Event::ScrollUp )
+		{
+			gfx.camera.UpdateZoom( 0.1f );
+		}
 	}
 }
 
