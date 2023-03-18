@@ -2,6 +2,7 @@
 #include "Win.h"
 #include "Core/BaseException.h"
 #include "Camera.h"
+#include <Render/Renderer.h>
 #include <d3d11.h>
 #include <wrl.h>
 #include <DirectXMath.h>
@@ -37,6 +38,7 @@ public:
 public:
 	void BeginFrame();
 	void Draw( UINT vertexCount, UINT start );
+	void ExecuteRenderer();
 	void DrawIndexed( UINT indexCount );
 	std::shared_ptr<RenderTarget> pGetRenderTarget();
 	void EndFrame();
@@ -44,6 +46,7 @@ public:
 	UINT GetHeight() const;
 public:
 	Camera camera;
+	Renderer renderer;
 private:
 	// Dimensions of client area
 	UINT Width;

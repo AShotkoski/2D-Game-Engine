@@ -1,16 +1,12 @@
 #pragma once
 #include "Vec2.h"
 
-class PhysicsEntity
+class RigidBody
 {
 public:
-	void Update( float dt )
-	{
-		velocity += acceleration;
-		position += velocity * dt;
-	}
+	void Update( float dt );
 protected:
-	PhysicsEntity( float m, Vec2& pos, Vec2 v, Vec2 a )
+	RigidBody( float m, Vec2& pos, Vec2 v, Vec2 a )
 		: position( pos )
 		, velocity( v )
 		, acceleration( a )

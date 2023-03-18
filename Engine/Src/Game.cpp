@@ -10,7 +10,9 @@ Game::Game()
 	, gfx( wnd.GFX() )
 	, plane( gfx, Rect::Make({0,0 },5.f,0.1f))
 	, circle( gfx, { 2.f, 1.6f }, 0.3f, 20  )
+	, ball( gfx, { 0.f, 5.f }, 0.75f  )
 {
+	gfx.renderer.RegisterDrawable( std::make_unique<Circle>( gfx, Vec2{ -4.f, -3.f }, 3.f ) );
 }
 
 Game::~Game()
@@ -36,14 +38,6 @@ void Game::UpdateLogic()
 	{
 		if ( e->GetType() == Keyboard::Event::Keydown )
 		{
-			if ( e->GetVirtualKey() == 'E' )
-			{
-				pointDrawer.AddPoint( { 0.5f,0.5f }, Colors::OrangeRed, gfx );
-			}
-			if ( e->GetVirtualKey() == 'R' )
-			{
-				pointDrawer.AddPoint( { -0.5f,-0.5f }, Colors::Blue, gfx );
-			}
 
 		}
 	}
@@ -79,7 +73,7 @@ void Game::UpdateLogic()
 
 void Game::DrawFrame()
 {
-	pointDrawer.Draw( gfx );
+	gfx.ExecuteRenderer();
 	plane.Draw( gfx );
 	circle.Draw( gfx );
 }

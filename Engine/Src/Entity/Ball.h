@@ -1,7 +1,11 @@
 #pragma once
-#include "PhysicsEntity.h"
+#include "BaseEntity.h"
 
-class Ball : public PhysicsEntity
+class Graphics;
+
+class Ball : public BaseEntity
 {
+public:
+	Ball( Graphics& gfx, Vec2 pos, float radius );
 };
 

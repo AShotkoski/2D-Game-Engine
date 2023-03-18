@@ -7,7 +7,7 @@
 #include <DirectXMath.h>
 #include <d3d11sdklayers.h>
 #include <Binds/RenderTarget.h>
-
+#include <Draw/Drawable.h>
 
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
@@ -89,6 +89,11 @@ void Graphics::BeginFrame()
 void Graphics::Draw( UINT vertexCount, UINT start )
 {
 	pContext->Draw( vertexCount, start );
+}
+
+void Graphics::ExecuteRenderer()
+{
+	renderer.Execute( *this );
 }
 
 void Graphics::DrawIndexed( UINT indexCount )

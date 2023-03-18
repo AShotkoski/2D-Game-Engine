@@ -111,13 +111,19 @@
     <ClInclude Include="Src\Draw\Circle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Physics\PhysicsEntity.h">
+    <ClInclude Include="Src\Physics\RigidBody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Physics\Ball.h">
+    <ClInclude Include="Src\Entity\Ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Physics\Vec2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Entity\BaseEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Render\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -188,7 +194,16 @@
     <ClCompile Include="Src\Draw\Circle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Physics\Ball.cpp">
+    <ClCompile Include="Src\Entity\Ball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Physics\RigidBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Render\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Entity\BaseEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

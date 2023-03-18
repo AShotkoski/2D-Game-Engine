@@ -1,6 +1,6 @@
-#include "PhysicsEntity.h"
+#include "RigidBody.h"
 
-void PhysicsEntity::Update( float dt )
+void RigidBody::Update( float dt )
 {
 	velocity += acceleration;
 	position += velocity * dt;
