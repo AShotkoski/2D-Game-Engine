@@ -2,13 +2,18 @@
 #include <Physics/Vec2.h>
 #include <memory>
 
-class Renderer;
+class Graphics;
 class Drawable;
 
 class BaseEntity
 {
 protected:
-	BaseEntity( Renderer& Renderer, std::unique_ptr<Drawable> model  );
+	BaseEntity( Graphics& gfx, std::unique_ptr<Drawable> model, 
+				Vec2 pos, float width = 1.f, float height = 1.f, float rotation = 0.f );
 protected:
-	Vec2 Position{ 0,0 };
+	Vec2 position;
+	float rotation;
+	float width;
+	float height;
+	Drawable* pModel = nullptr;
 };

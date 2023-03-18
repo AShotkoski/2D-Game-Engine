@@ -10,7 +10,7 @@ class Bindable;
 
 class Drawable
 {
-	friend class PhysicsEntity;
+	friend class BaseEntity;
 
 	struct ConstBuffer
 	{
@@ -20,15 +20,11 @@ class Drawable
 public:
 	virtual void Draw( Graphics& gfx ) const = 0;
 protected:
-	Drawable( Graphics& gfx );;
+	Drawable( Graphics& gfx);
 	void AddBind( std::unique_ptr<Bindable> bind );
 	virtual void BindAll( Graphics& gfx ) const;
-	virtual void UpdateTransformBuffer(Graphics& gfx);
-protected:
-	Vec2 Position{ 0,0 };
-	float Rotation = 0.f;
-	float ScaleWidth = 1.f;
-	float ScaleHeight = 1.f;
+	virtual void UpdateTransformBuffer(Vec2 pos, float theta, float width, float height, Graphics& gfx);
+	virtual void UpdateTransformBufferCamera(Graphics& gfx); // only camera
 private:
 	ConstBuffer CBData;
 	std::vector<std::unique_ptr<Bindable>> BindPtrs;

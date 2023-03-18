@@ -8,11 +8,8 @@ namespace dx = DirectX;
 Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
-	, plane( gfx, Rect::Make({0,0 },5.f,0.1f))
-	, circle( gfx, { 2.f, 1.6f }, 0.3f, 20  )
 	, ball( gfx, { 0.f, 5.f }, 0.75f  )
 {
-	gfx.renderer.RegisterDrawable( std::make_unique<Circle>( gfx, Vec2{ -4.f, -3.f }, 3.f ) );
 }
 
 Game::~Game()
@@ -74,6 +71,4 @@ void Game::UpdateLogic()
 void Game::DrawFrame()
 {
 	gfx.ExecuteRenderer();
-	plane.Draw( gfx );
-	circle.Draw( gfx );
 }

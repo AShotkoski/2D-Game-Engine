@@ -1,8 +1,6 @@
 #pragma once
 #include "Core/Window.h"
 #include "Util/FrameTimer.h"
-#include "Draw/Quad.h"
-#include "Draw/Circle.h"
 #include <Entity/Ball.h>
 
 class Game
@@ -24,8 +22,6 @@ private:
 	float dt = 0.f;
 	float adj_dt = 0.f;
 	float timeFactor = 1.0f;
-	Quad plane;
-	Circle circle;
 	Ball ball;
 private:
 	static constexpr UINT ScreenWidth = 1272u;

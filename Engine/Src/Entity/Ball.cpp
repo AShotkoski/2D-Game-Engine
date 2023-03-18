@@ -2,6 +2,7 @@
 #include <Draw/Circle.h>
 
 Ball::Ball( Graphics& gfx,  Vec2 pos, float radius )
-	: BaseEntity(gfx.renderer, std::make_unique<Circle>(gfx, pos, radius, 18))
+	: BaseEntity(gfx, std::make_unique<Circle>(gfx, 18), {0,5.f })
+	, radius(radius)
 {
 }

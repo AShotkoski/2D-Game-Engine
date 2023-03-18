@@ -8,7 +8,7 @@ class Quad : public Drawable
 {
 	using UINT = unsigned int;
 public:
-	Quad( Graphics& gfx, Rect rect );
+	Quad( Graphics& gfx );
 	virtual void Draw( Graphics& gfx ) const override;
 private:
 	UINT idxCount;

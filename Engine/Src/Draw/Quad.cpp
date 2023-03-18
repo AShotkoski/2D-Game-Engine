@@ -7,12 +7,9 @@
 #include "Binds/IndexBuffer.h"
 #include "Binds/VertexShader.h"
 
-Quad::Quad( Graphics& gfx, Rect rect )
+Quad::Quad( Graphics& gfx )
 	: Drawable(gfx)
 {
-	Position = rect.GetCenter();
-	ScaleWidth = rect.GetWidth();
-	ScaleHeight = rect.GetHeight();
 	// Make vertices
 	std::vector<Vec2> verts;
 	verts.emplace_back( -1.f, 1.f );
