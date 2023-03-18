@@ -10,6 +10,7 @@ Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
 	, plane( gfx, Rect::Make({0,0 },5.f,0.1f))
+	, circle( gfx, { 2.f, 0.f }, 1.f  )
 {
 }
 
@@ -81,4 +82,5 @@ void Game::DrawFrame()
 {
 	pointDrawer.Draw( gfx );
 	plane.Draw( gfx );
+	circle.Draw( gfx );
 }

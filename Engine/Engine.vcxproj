@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Camera.h" />
+    <ClInclude Include="Src\Draw\Circle.h" />
     <ClInclude Include="Src\Draw\Quad.h" />
     <ClInclude Include="Src\Binds\ConstantBuffers.h" />
     <ClInclude Include="Src\Draw\Drawable.h" />
@@ -123,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Camera.cpp" />
+    <ClCompile Include="Src\Draw\Circle.cpp" />
     <ClCompile Include="Src\Draw\Drawable.cpp" />
     <ClCompile Include="Src\Draw\Quad.cpp" />
     <ClCompile Include="Src\Draw\PointDrawer.cpp" />

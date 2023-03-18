@@ -10,7 +10,6 @@ Drawable::Drawable( Graphics& gfx )
 	: CBData{  DirectX::XMMatrixTranspose(DirectX::XMMatrixIdentity()), gfx.camera.GetMatrixWithProjection() }
 {
 	pTransformCB = std::make_unique<Binds::VertexConstantBuffer<ConstBuffer>>( gfx,CBData, 0u );
-	AddBind( std::make_unique<Binds::Topology>( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
 	AddBind( std::make_unique<Binds::PixelShader>( gfx, L"SolidPS.cso" ) );
 	auto vs = std::make_unique<Binds::VertexShader>( gfx, L"TransformVS.cso" );
 	auto vsByteCode = vs->pGetBytecode();

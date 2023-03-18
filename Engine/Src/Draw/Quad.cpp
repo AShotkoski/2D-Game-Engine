@@ -24,32 +24,11 @@ Quad::Quad( Graphics& gfx, Rect rect )
 	std::vector<unsigned short> inds = { 0,1,2,0,2,3 };
 	AddBind( std::make_unique<Binds::IndexBuffer>( gfx, inds ) );
 	idxCount = (UINT)inds.size();
+	AddBind( std::make_unique<Binds::Topology>( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
 }
 
 void Quad::Draw( Graphics& gfx ) const
 {
-	if ( dirty )
-	{
-		const_cast<Quad*>( this )->UpdateTransformBuffer( gfx );
-		dirty = false;
-	}
 	BindAll( gfx );
 	gfx.DrawIndexed( idxCount );
-}
-
-void Quad::SetPos( Point newPos )
-{
-	Position = newPos;
-	dirty = true;
-}
-
-Point Quad::GetPos() const
-{
-	return Position;
-}
-
-
-void Quad::MarkDirty()
-{
-	dirty = true;
 }
