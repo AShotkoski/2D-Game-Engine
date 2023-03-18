@@ -57,9 +57,12 @@ void Camera::UpdateMovementSpeed( float factor )
 
 bool Camera::isDirty() const
 {
-	bool olddirty = dirty;
+	return dirty;
+}
+
+void Camera::MarkClean()
+{
 	dirty = false;
-	return olddirty;
 }
 
 float Camera::GetZoom() const

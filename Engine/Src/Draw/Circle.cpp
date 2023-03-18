@@ -3,7 +3,7 @@
 #include <Binds/VertexBuffer.h>
 #include <Binds/IndexBuffer.h>
 
-Circle::Circle( Graphics& gfx, Point pos, float radius )
+Circle::Circle( Graphics& gfx, Point pos, float radius, size_t resolution )
 	: Drawable(gfx)
 	, radius(radius)
 {
@@ -14,7 +14,6 @@ Circle::Circle( Graphics& gfx, Point pos, float radius )
 	std::vector<Point> verts;
 	std::vector<unsigned short> inds;
 	// Generate circle
-	constexpr size_t resolution = 10;
 	constexpr float pi = 3.1415926f;
 	const float step = ( 2.f * pi ) / float( resolution );
 	for ( size_t i = 0; i < resolution; i++ )

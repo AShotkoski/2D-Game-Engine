@@ -13,6 +13,7 @@ public:
 	DirectX::XMFLOAT2 GetPosition( ) const;
 	void UpdateMovementSpeed( float factor );
 	bool isDirty() const;
+	void MarkClean();
 	float GetZoom() const;
 	void SetZoom( float zoom_amount );
 	// Position for increase, negative decrease

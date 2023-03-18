@@ -120,6 +120,7 @@ void Graphics::EndFrame()
 		}
 	}
 	pRenderTarget->Bind( *this );
+	camera.MarkClean();
 }
 
 UINT Graphics::GetWidth() const
