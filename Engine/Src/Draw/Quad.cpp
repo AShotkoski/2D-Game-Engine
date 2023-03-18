@@ -1,5 +1,4 @@
 #include "Quad.h"
-#include <Util/Point.h>
 #include "Binds/InputLayout.h"
 #include "Binds/PixelShader.h"
 #include "Binds/RenderTarget.h"
@@ -15,7 +14,7 @@ Quad::Quad( Graphics& gfx, Rect rect )
 	ScaleWidth = rect.GetWidth();
 	ScaleHeight = rect.GetHeight();
 	// Make vertices
-	std::vector<Point> verts;
+	std::vector<Vec2> verts;
 	verts.emplace_back( -1.f, 1.f );
 	verts.emplace_back(  1.f, 1.f  );
 	verts.emplace_back(  1.f, -1.f  );

@@ -1,21 +1,21 @@
 #pragma once
-#include "Point.h"
+#include <Physics/Vec2.h>
 
 // data is top, bottom, left, right (32 bit float)
 class Rect
 {
 public:
-	static Rect Make( Point topleft, Point bottomright )
+	static Rect Make( Vec2 topleft, Vec2 bottomright )
 	{
 		return Rect{ topleft.y, bottomright.y, topleft.x, bottomright.x };
 	}
-	static Rect Make( Point center, float halfwidth, float halfheight )
+	static Rect Make( Vec2 center, float halfwidth, float halfheight )
 	{
 		return Rect{ center.y + halfheight, center.y - halfheight, center.x - halfwidth, center.x + halfwidth };
 	}
-	Point GetCenter() const
+	Vec2 GetCenter() const
 	{
-		return Point{ (left + right) / 2.f, (bottom + top) / 2.f };
+		return Vec2{ (left + right) / 2.f, (bottom + top) / 2.f };
 	}
 	float GetWidth() const
 	{

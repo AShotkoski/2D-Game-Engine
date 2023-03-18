@@ -3,23 +3,23 @@
 #include <vector>
 #include <memory>
 #include <Util/Colors.h>
-#include <Util/Point.h>
+#include <Physics/Vec2.h>
 
 class PointDrawer
 {
 	struct Vertex
 	{
-		Point pos;
+		Vec2 pos;
 		Color col;
 	};
 public:
 	PointDrawer() = default;
 	bool Empty() const;
-	void AddPoint( Point pt, Color c, Graphics& gfx );
+	void AddPoint( Vec2 pt, Color c, Graphics& gfx );
 	void Draw( Graphics& gfx ) const;
 private:
 	void _Init(Graphics& gfx );
-	void _AddPoint( Point pt,Color c, Graphics& gfx );
+	void _AddPoint( Vec2 pt,Color c, Graphics& gfx );
 private:
 	std::vector<struct Vertex> points;
 	std::vector<std::unique_ptr<Bindable>> BindPtrs;

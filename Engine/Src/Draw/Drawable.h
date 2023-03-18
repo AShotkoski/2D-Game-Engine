@@ -1,8 +1,8 @@
 #pragma once
+#include <Physics/Vec2.h>
 #include <vector>
 #include <memory>
 #include <DirectXMath.h>
-#include <Util/Point.h>
 #include <Binds/ConstantBuffers.h>
 
 class Graphics;
@@ -10,6 +10,8 @@ class Bindable;
 
 class Drawable
 {
+	friend class PhysicsEntity;
+
 	struct ConstBuffer
 	{
 		DirectX::XMMATRIX model;
@@ -23,7 +25,7 @@ protected:
 	virtual void BindAll( Graphics& gfx ) const;
 	virtual void UpdateTransformBuffer(Graphics& gfx);
 protected:
-	Point Position{ 0,0 };
+	Vec2 Position{ 0,0 };
 	float Rotation = 0.f;
 	float ScaleWidth = 1.f;
 	float ScaleHeight = 1.f;

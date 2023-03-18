@@ -3,7 +3,7 @@
 #include <Binds/VertexBuffer.h>
 #include <Binds/IndexBuffer.h>
 
-Circle::Circle( Graphics& gfx, Point pos, float radius, size_t resolution )
+Circle::Circle( Graphics& gfx, Vec2 pos, float radius, size_t resolution )
 	: Drawable(gfx)
 	, radius(radius)
 {
@@ -11,7 +11,7 @@ Circle::Circle( Graphics& gfx, Point pos, float radius, size_t resolution )
 	ScaleWidth = ScaleHeight = radius;
 
 	AddBind( std::make_unique<Binds::Topology>( gfx, D3D11_PRIMITIVE_TOPOLOGY_LINELIST ) );
-	std::vector<Point> verts;
+	std::vector<Vec2> verts;
 	std::vector<unsigned short> inds;
 	// Generate circle
 	constexpr float pi = 3.1415926f;

@@ -11,7 +11,7 @@ bool PointDrawer::Empty() const
 	return points.empty() && BindPtrs.empty();
 }
 
-void PointDrawer::AddPoint( Point pt,Color c, Graphics& gfx )
+void PointDrawer::AddPoint( Vec2 pt,Color c, Graphics& gfx )
 {
 	if ( Empty() )
 	{
@@ -51,7 +51,7 @@ void PointDrawer::_Init(Graphics& gfx)
 	pVertexBuffer = std::make_unique<Binds::VertexBuffer>( gfx, points );
 }
 
-void PointDrawer::_AddPoint( Point pt, Color c, Graphics& gfx )
+void PointDrawer::_AddPoint( Vec2 pt, Color c, Graphics& gfx )
 {
 	points.push_back( Vertex{std::move(pt), std::move(c) });
 	auto old = pVertexBuffer.release();

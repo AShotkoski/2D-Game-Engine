@@ -1,6 +1,5 @@
 #include "Graphics.h"
 #include "Macros.h"
-#include "Util/Point.h"
 #include "Util/Colors.h"
 #include <sstream>
 #include <vector>

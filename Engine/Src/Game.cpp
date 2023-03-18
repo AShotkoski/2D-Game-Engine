@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "Util/Colors.h"
 #include "Util/MathUtil.h"
-#include "Util/Point.h"
 #include <numbers>
 
 namespace dx = DirectX;
