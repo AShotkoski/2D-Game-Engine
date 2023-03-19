@@ -58,7 +58,7 @@ private:
 	std::shared_ptr<RenderTarget> pRenderTarget;
 private:
 	/********************** Parameters *******************/
-	static constexpr bool enableVSync = false;
+	static constexpr bool enableVSync = true;
 
 };
 

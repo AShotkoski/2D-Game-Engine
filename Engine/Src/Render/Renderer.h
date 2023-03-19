@@ -10,6 +10,7 @@ class Renderer
 public:
 	Renderer() = default;
 	void RegisterDrawable( std::unique_ptr<Drawable> drawable );
+	void DestroyDrawable( Drawable* pDrawable );
 	void Execute( Graphics& gfx ) const;
 private:
 	std::vector<std::unique_ptr<Drawable>> drawablePtrs;

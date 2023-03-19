@@ -9,10 +9,16 @@ BaseEntity::BaseEntity( Graphics& gfx, std::unique_ptr<Drawable> model,
 	, width(width)
 	, height(height)
 	, rotation(rotation)
+	, gfx(gfx)
 {
 	DCHECK_F( (bool)model, "invalid model on creation of base entity" );
 
 	pModel = model.get();
 	gfx.renderer.RegisterDrawable( std::move( model ) );
+	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
+}
+
+void BaseEntity::UpdateModel() const
+{
 	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
 }

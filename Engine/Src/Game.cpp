@@ -2,14 +2,20 @@
 #include "Util/Colors.h"
 #include "Util/MathUtil.h"
 #include <numbers>
+#include <log.h>
+#include <Util/NumberFactory.h>
 
 namespace dx = DirectX;
 
 Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
-	, ball( gfx, { 0.f, 5.f }, 0.75f  )
 {
+	for ( size_t i = 0; i < 5000; i++ )
+	{
+		auto randvec = Vec2{ NumberFactory::RandomReal( -10.f,10.f ),NumberFactory::RandomReal( -2.f,10.f ) };
+		balls.emplace_back( gfx, randvec, NumberFactory::RandomReal(0.1f, 2.f) );
+	}
 }
 
 Game::~Game()
@@ -35,8 +41,19 @@ void Game::UpdateLogic()
 	{
 		if ( e->GetType() == Keyboard::Event::Keydown )
 		{
-
+			if ( e->GetVirtualKey() == 'G' )
+			{
+				balls[0].ApplyImpl(Vec2{ 0.001f,9.8f });
+			}
 		}
+	}
+	if ( wnd.kbd.KeyIsPressed( 'N' ) )
+	{
+		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
+		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
+		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
+		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
+		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
 	}
 
 	if ( wnd.kbd.KeyIsPressed( 'I' ) )
@@ -65,6 +82,11 @@ void Game::UpdateLogic()
 		{
 			gfx.camera.UpdateZoom( 0.1f );
 		}
+	}
+
+	for ( auto& b : balls )
+	{
+		b.Update( adj_dt );
 	}
 }
 

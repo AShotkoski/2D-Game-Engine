@@ -21,8 +21,8 @@ private:
 private:
 	float dt = 0.f;
 	float adj_dt = 0.f;
-	float timeFactor = 1.0f;
-	Ball ball;
+	float timeFactor = 1.f;
+	std::vector<Ball> balls;
 private:
 	static constexpr UINT ScreenWidth = 1272u;
 	static constexpr UINT ScreenHeight = 954u;
