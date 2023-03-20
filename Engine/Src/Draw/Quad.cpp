@@ -16,11 +16,11 @@ Quad::Quad( Graphics& gfx )
 	verts.emplace_back(  1.f, 1.f  );
 	verts.emplace_back(  1.f, -1.f  );
 	verts.emplace_back(  -1.f, -1.f  );
-	AddBind( std::make_unique<Binds::VertexBuffer>( gfx, verts ) );
+	AddBind( Binds::VertexBuffer::Resolve( gfx, verts, "Quad"));
 	std::vector<unsigned short> inds = { 0,1,2,0,2,3 };
-	AddBind( std::make_unique<Binds::IndexBuffer>( gfx, inds ) );
+	AddBind( Binds::IndexBuffer::Resolve( gfx, inds, "Quad"));
 	idxCount = (UINT)inds.size();
-	AddBind( std::make_unique<Binds::Topology>( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
+	AddBind( Binds::Topology::Resolve( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
 }
 
 void Quad::Draw( Graphics& gfx ) const

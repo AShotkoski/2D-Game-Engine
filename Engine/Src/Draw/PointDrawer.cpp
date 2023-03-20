@@ -48,7 +48,7 @@ void PointDrawer::_Init(Graphics& gfx)
 	BindPtrs.push_back( std::make_unique <Binds::InputLayout>( gfx, std::move( inputDesc ), *vsByteCode ) );
 	BindPtrs.push_back( std::move( vs ) );
 
-	pVertexBuffer = std::make_unique<Binds::VertexBuffer>( gfx, points );
+	pVertexBuffer = std::make_unique<Binds::VertexBuffer>( gfx, points, "PointDrawer");
 }
 
 void PointDrawer::_AddPoint( Vec2 pt, Color c, Graphics& gfx )
@@ -56,5 +56,5 @@ void PointDrawer::_AddPoint( Vec2 pt, Color c, Graphics& gfx )
 	points.push_back( Vertex{std::move(pt), std::move(c) });
 	auto old = pVertexBuffer.release();
 	delete old;
-	pVertexBuffer = std::make_unique<Binds::VertexBuffer>( gfx, points );
+	pVertexBuffer = std::make_unique<Binds::VertexBuffer>( gfx, points, "PointDrawer");
 }

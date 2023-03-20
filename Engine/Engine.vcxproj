@@ -88,6 +88,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Binds\BindableCodex.h" />
     <ClInclude Include="Src\Camera.h" />
     <ClInclude Include="Src\Draw\Circle.h" />
     <ClInclude Include="Src\Draw\Quad.h" />

@@ -1,6 +1,7 @@
 #pragma once
 #include "Bindable.h"
 #include "Macros.h"
+#include "BindableCodex.h"
 #include <vector>
 #include <wrl.h>
 #include <cassert>
@@ -13,11 +14,22 @@ namespace Binds
 	{
 	public:
 		template <class Vertex>
-		VertexBuffer( Graphics& gfx, const std::vector<Vertex>& vertices );
+		VertexBuffer( Graphics& gfx, const std::vector<Vertex>& vertices, std::string tag );
 		void Bind( Graphics& gfx ) override
 		{
 			const UINT offset = 0u;
 			pGetContext( gfx )->IASetVertexBuffers( 0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset );
+		}
+		template <class Vertex>
+		static std::string GenerateUID( const std::vector<Vertex>& vertices, std::string tag )
+		{
+			return std::string( typeid( VertexBuffer ).name() ) + tag;
+		}
+		template <class Vertex>
+		static std::shared_ptr<VertexBuffer>
+			Resolve( Graphics& gfx, const std::vector<Vertex>& vertices, std::string tag )
+		{
+			return Binds::Codex::Resolve<VertexBuffer>( gfx, vertices, tag );
 		}
 	protected:
 		VertexBuffer() = default;
@@ -26,7 +38,7 @@ namespace Binds
 	};
 
 	template<class Vertex>
-	VertexBuffer::VertexBuffer( Graphics& gfx, const std::vector<Vertex>& vertices )
+	VertexBuffer::VertexBuffer( Graphics& gfx, const std::vector<Vertex>& vertices, std::string tag )
 	{
 		assert( vertices.size() > 0 );
 		// Error checker

@@ -1,6 +1,7 @@
 #include "VertexShader.h"
 #include "Macros.h"
 #include "Util/GeneralUtilities.h"
+#include "BindableCodex.h"
 #include "log.h"
 #include <filesystem>
 #include <d3dcompiler.h>
@@ -34,5 +35,16 @@ namespace Binds
 		return pBlob.Get();
 	}
 
+	std::string VertexShader::GenerateUID( const std::wstring path )
+	{
+		using namespace std::string_literals;
+		std::string pathA = Util::WStringToString( path );
+		return std::string( typeid( VertexShader ).name() + "_"s + pathA );
+	}
+
+	std::shared_ptr<VertexShader> VertexShader::Resolve( Graphics& gfx, const std::wstring path )
+	{
+		return Codex::Resolve<VertexShader>( gfx, path );
+	}
 
 };
