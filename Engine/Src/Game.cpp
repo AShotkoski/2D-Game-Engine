@@ -11,7 +11,7 @@ Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
 {
-	for ( size_t i = 0; i < 5000; i++ )
+	for ( size_t i = 0; i < 1000; i++ )
 	{
 		auto randvec = Vec2{ NumberFactory::RandomReal( -10.f,10.f ),NumberFactory::RandomReal( -2.f,10.f ) };
 		balls.emplace_back( gfx, randvec, NumberFactory::RandomReal(0.1f, 2.f) );
@@ -56,19 +56,19 @@ void Game::UpdateLogic()
 		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
 	}
 
-	if ( wnd.kbd.KeyIsPressed( 'I' ) )
+	if ( wnd.kbd.KeyIsPressed( 'W' ) )
 	{
 		gfx.camera.UpdatePosition( {0, 1.f }, dt);
 	}
-	else if ( wnd.kbd.KeyIsPressed( 'K' ) )
+	else if ( wnd.kbd.KeyIsPressed( 'S' ) )
 	{
 		gfx.camera.UpdatePosition( {0, -1.f }, dt);
 	}
-	else if ( wnd.kbd.KeyIsPressed( 'J' ) )
+	else if ( wnd.kbd.KeyIsPressed( 'A' ) )
 	{
 		gfx.camera.UpdatePosition( {-1.f, 0 }, dt);
 	}
-	else if ( wnd.kbd.KeyIsPressed( 'L' ) )
+	else if ( wnd.kbd.KeyIsPressed( 'D' ) )
 	{
 		gfx.camera.UpdatePosition( {1.f, 0 }, dt);
 	}
