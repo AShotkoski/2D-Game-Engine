@@ -18,13 +18,13 @@ public:
 	void shittybounce( float floor_level )
 	{
 			// pure elastic : vel(final) = ( vel * ( mass - groundmass ) + groundvel * ( 2 * groundmass ) ) / ( mass + groundmass )
-		constexpr float coef_of_restitution = 0.5f;
+		constexpr float coef_of_restitution = 0.85f;
 		if ( position.y - height <= floor_level )
 		{
 			vel *= coef_of_restitution;
 			vel = -vel;
 
-			vel = 0;
+			//vel = 0;
 			position.y += ( floor_level - (position.y - height) );
 		}
 	}

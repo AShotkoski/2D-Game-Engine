@@ -1,4 +1,5 @@
-float4 main() : SV_TARGET
+float4 main(float2 pos : WORLDPOS) : SV_TARGET
 {
-	return float4(1.0f, 0.0f, 1.0f, 1.0f);
+    float lol = saturate((pos.y + 5) / 60.f);
+	return float4(lol, 0.0f, 1.f - lol, 1.0f);
 }

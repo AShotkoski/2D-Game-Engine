@@ -26,6 +26,6 @@ private:
 	DirectX::XMMATRIX projection = DirectX::XMMatrixIdentity();
 	DirectX::XMFLOAT2 Position;
 	float MoveSpeed = 8.5f;
-	float zoom = 0.05f;
+	float zoom = 0.005f;
 };
 

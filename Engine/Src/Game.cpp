@@ -11,11 +11,12 @@ Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
 {
-	for ( size_t i = 0; i < 1000; i++ )
+	for ( size_t i = 0; i < 100; i++ )
 	{
-		auto randvec = Vec2{ NumberFactory::RandomReal( -10.f,10.f ),NumberFactory::RandomReal( -2.f,10.f ) };
+		auto randvec = Vec2{ NumberFactory::RandomReal( -100.f,100.f ),NumberFactory::RandomReal( -2.f,100.f ) };
 		balls.emplace_back( gfx, randvec, NumberFactory::RandomReal(0.1f, 2.f) );
 	}
+	DLOG_F( INFO, "created" );
 }
 
 Game::~Game()
@@ -24,6 +25,7 @@ Game::~Game()
 
 void Game::Go()
 {
+	//LOG_SCOPE_F( INFO, "go");
 	// Capture frame time
 	dt = ft.Mark();
 	adj_dt = dt * timeFactor;
@@ -36,7 +38,8 @@ void Game::Go()
 }
 
 void Game::UpdateLogic()
-{		
+{	
+	//LOG_SCOPE_F( INFO, "updatelogic" );
 	while ( auto e = wnd.kbd.GetEvent() )
 	{
 		if ( e->GetType() == Keyboard::Event::Keydown )
