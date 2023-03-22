@@ -46,7 +46,9 @@ void Game::UpdateLogic()
 		{
 			if ( e->GetVirtualKey() == 'G' )
 			{
-				balls[0].ApplyImpl(Vec2{ 0.001f,9.8f });
+				//balls[0].ApplyImpl(Vec2{ 0.001f,9.8f });
+				while (!balls.empty())
+					balls.pop_back();
 			}
 		}
 	}

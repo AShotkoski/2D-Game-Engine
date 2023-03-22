@@ -5,8 +5,15 @@
 #include <Binds/PixelShader.h>
 #include <Binds/VertexShader.h>
 #include <Binds/InputLayout.h>
+#include <log.h>
 
-Drawable::Drawable( Graphics& gfx ) 
+UINT Drawable::GetIndicesCount() const
+{
+	DCHECK_F(IndicesCount > 0u, "You must set indices count before calling getindicescount.");
+	return IndicesCount;
+}
+
+Drawable::Drawable( Graphics& gfx )
 	: CBData{  DirectX::XMMatrixTranspose(DirectX::XMMatrixIdentity()), gfx.camera.GetMatrixWithProjection() }
 {
 	pTransformCB = std::make_unique<Binds::VertexConstantBuffer<ConstBuffer>>( gfx,CBData, 0u );
@@ -51,4 +58,10 @@ void Drawable::UpdateTransformBufferCamera(Graphics& gfx )
 	using namespace DirectX;
 	CBData.viewproj = XMMatrixTranspose( gfx.camera.GetMatrixWithProjection());
 	pTransformCB->Update( gfx, CBData );
+}
+
+void Drawable::SetIndicesCount(UINT count)
+{
+	DCHECK_F(count > 0u, "Cannot set a drawable to have 0 indices.");
+	IndicesCount = count;
 }

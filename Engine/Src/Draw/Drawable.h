@@ -18,15 +18,18 @@ class Drawable
 		DirectX::XMMATRIX viewproj;
 	};
 public:
-	virtual void Draw( Graphics& gfx ) const = 0;
+	virtual void BindAll( Graphics& gfx ) const;
+	UINT GetIndicesCount() const;
 protected:
 	Drawable( Graphics& gfx);
 	void AddBind( std::shared_ptr<Bindable> bind );
-	virtual void BindAll( Graphics& gfx ) const;
 	virtual void UpdateTransformBuffer(Vec2 pos, float theta, float width, float height, Graphics& gfx);
-	virtual void UpdateTransformBufferCamera(Graphics& gfx); // only camera
+	virtual void UpdateTransformBufferCamera(Graphics& gfx); 
+	void SetIndicesCount(UINT count);
 private:
-	ConstBuffer CBData;
-	std::vector<std::shared_ptr<Bindable>> BindPtrs;
+	ConstBuffer                                               CBData;
+	std::vector<std::shared_ptr<Bindable>>                    BindPtrs;
 	std::unique_ptr<Binds::VertexConstantBuffer<ConstBuffer>> pTransformCB;
+
+	UINT IndicesCount = 0u;
 };

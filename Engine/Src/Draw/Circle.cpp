@@ -22,11 +22,5 @@ Circle::Circle( Graphics& gfx, size_t resolution )
 	}
 	AddBind( Binds::VertexBuffer::Resolve( gfx, verts, "Circle"));
 	AddBind( Binds::IndexBuffer::Resolve( gfx, inds, "Circle"));
-	idxCount = (UINT)inds.size();
-}
-
-void Circle::Draw( Graphics& gfx ) const
-{
-	BindAll( gfx );
-	gfx.DrawIndexed( idxCount );
+	SetIndicesCount((UINT)inds.size());
 }

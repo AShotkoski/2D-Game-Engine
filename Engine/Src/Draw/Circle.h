@@ -6,7 +6,4 @@ class Circle : public Drawable
 	using UINT = unsigned int;
 public:
 	Circle( Graphics& gfx, size_t resolution = 12 );
-	virtual void Draw( Graphics& gfx ) const override;
-private:
-	UINT idxCount;
 };

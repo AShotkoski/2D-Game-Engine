@@ -10,7 +10,9 @@ class BaseEntity
 protected:
 	BaseEntity( Graphics& gfx, std::shared_ptr<Drawable> model, 
 				Vec2 pos, float width = 1.f, float height = 1.f, float rotation = 0.f );
+	BaseEntity(BaseEntity&& src);
 	void UpdateModel() const;
+	virtual ~BaseEntity() noexcept;
 protected:
 	Vec2 position;
 	float rotation;

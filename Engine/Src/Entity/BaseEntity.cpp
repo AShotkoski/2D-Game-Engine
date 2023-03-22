@@ -10,15 +10,33 @@ BaseEntity::BaseEntity( Graphics& gfx, std::shared_ptr<Drawable> model,
 	, height(height)
 	, rotation(rotation)
 	, gfx(gfx)
+	, pModel(std::move(model))
 {
-	DCHECK_F( (bool)model, "invalid model on creation of base entity" );
+	DCHECK_F( (bool)pModel, "invalid model on creation of base entity" );
 
-	pModel = model;
-	gfx.renderer.RegisterDrawable(  std::move(model)  );
+	gfx.renderer.RegisterDrawable(  std::ref(pModel)  );
 	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
+}
+
+BaseEntity::BaseEntity(BaseEntity&& src)
+	: gfx(src.gfx)
+	, position(src.position)
+	, rotation(src.rotation)
+	, width(src.width)
+	, height(src.height)
+	, pModel(std::move(src.pModel))
+{
 }
 
 void BaseEntity::UpdateModel() const
 {
 	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
+}
+
+BaseEntity::~BaseEntity() noexcept
+{
+	if (pModel)
+	{
+		gfx.renderer.DestroyDrawable(pModel.get());
+	}
 }

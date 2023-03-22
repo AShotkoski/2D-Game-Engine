@@ -2,21 +2,22 @@
 #include <Draw/Drawable.h>
 #include <log.h>
 
-void Renderer::RegisterDrawable( std::shared_ptr<Drawable> drawable )
+void Renderer::RegisterDrawable(std::shared_ptr<Drawable> pDrawable )
 {
-	drawablePtrs.push_back( std::move( drawable ) );
+	drawables.push_back( std::move(pDrawable) );
 }
 
-void Renderer::DestroyDrawable( Drawable* pDrawable )
+void Renderer::DestroyDrawable( const Drawable* pDrawable )
 {
-	std::erase_if( drawablePtrs,
-					[pDrawable]( std::shared_ptr<Drawable>& d ) { return d.get() == pDrawable; } );
+	std::erase_if( drawables,
+					[pDrawable](const std::shared_ptr<Drawable>& d ) { return d.get() == pDrawable; });
 }
 
 void Renderer::Execute( Graphics& gfx ) const
 {
-	for ( auto& d : drawablePtrs )
+	for ( auto& d : drawables )
 	{
-		d->Draw( gfx );
+		d->BindAll( gfx );
+		gfx.DrawIndexed(d->GetIndicesCount());
 	}
 }

@@ -19,12 +19,6 @@ Quad::Quad( Graphics& gfx )
 	AddBind( Binds::VertexBuffer::Resolve( gfx, verts, "Quad"));
 	std::vector<unsigned short> inds = { 0,1,2,0,2,3 };
 	AddBind( Binds::IndexBuffer::Resolve( gfx, inds, "Quad"));
-	idxCount = (UINT)inds.size();
 	AddBind( Binds::Topology::Resolve( gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) );
-}
-
-void Quad::Draw( Graphics& gfx ) const
-{
-	BindAll( gfx );
-	gfx.DrawIndexed( idxCount );
+	SetIndicesCount((UINT)inds.size());
 }
