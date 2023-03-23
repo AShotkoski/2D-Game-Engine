@@ -11,6 +11,8 @@ namespace Phys
 
 class RigidBodyEntity : public BaseEntity
 {
+public:
+	Phys::RigidBody* pGetBody();
 protected:
 	RigidBodyEntity(
 		Graphics&                 gfx,
@@ -25,6 +27,7 @@ protected:
 	RigidBodyEntity(const RigidBodyEntity& src) = delete;
 	RigidBodyEntity(RigidBodyEntity&& src) noexcept;
 private:
+	size_t sceneIdx = std::numeric_limits<size_t>::max();
 	Phys::System* pPhysicsScene;
 	std::unique_ptr<Phys::RigidBody> body;
 };

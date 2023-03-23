@@ -21,10 +21,10 @@ BaseEntity::BaseEntity( Graphics& gfx, std::unique_ptr<Drawable> model,
 
 BaseEntity::BaseEntity(BaseEntity&& src) noexcept
 	: gfx(src.gfx)
-	, position(src.position)
-	, rotation(src.rotation)
-	, width(src.width)
-	, height(src.height)
+	, position(std::move(src.position))
+	, rotation(std::move(src.rotation))
+	, width(std::move(src.width))
+	, height(std::move(src.height))
 	, pModel(std::move(src.pModel))
 {
 }
@@ -32,6 +32,12 @@ BaseEntity::BaseEntity(BaseEntity&& src) noexcept
 void BaseEntity::UpdateModel() const
 {
 	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
+}
+
+BaseEntity& BaseEntity::operator=(BaseEntity&& src) noexcept
+{
+	BaseEntity(std::move(src));
+	return *this;
 }
 
 BaseEntity::~BaseEntity() noexcept

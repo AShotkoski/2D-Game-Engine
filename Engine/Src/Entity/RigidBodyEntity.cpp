@@ -4,6 +4,11 @@
 #include <Draw/Drawable.h>
 #include <log.h>
 
+Phys::RigidBody* RigidBodyEntity::pGetBody()
+{
+	return body.get();
+}
+
 RigidBodyEntity::RigidBodyEntity(
 	Graphics&                        gfx,
 	Phys::System*                    scene,
@@ -20,14 +25,14 @@ RigidBodyEntity::RigidBodyEntity(
 	DCHECK_F((bool)body, "Null body in creation of rigid body entity");
 	DCHECK_NOTNULL_F(scene, "null scene in creation of rigid body entity");
 
-	scene->RegisterRigidBody(body.get());
+	sceneIdx = scene->RegisterRigidBodyEntity(this);
 }
 
 RigidBodyEntity::~RigidBodyEntity() noexcept
 {
 	if (body)
 	{
-		pPhysicsScene->UnregisterRigidBody(body.get());
+		pPhysicsScene->UnregisterRigidBodyEntity(this);
 	}
 }
 
@@ -35,5 +40,8 @@ RigidBodyEntity::RigidBodyEntity(RigidBodyEntity&& src) noexcept
 	: BaseEntity(std::move(src))
 	, pPhysicsScene(src.pPhysicsScene)
 	, body(std::move(src.body))
+	, sceneIdx(std::move(src.sceneIdx))
 {
+	body->UpdatePtrs(&position);
+	pPhysicsScene->UpdateRigidBodyEntityPtr(this, sceneIdx);
 }

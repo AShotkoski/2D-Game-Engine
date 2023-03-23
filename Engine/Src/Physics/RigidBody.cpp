@@ -11,6 +11,10 @@ namespace Phys
 	{
 		DCHECK_NOTNULL_F(pPos, "Invalid position in creationo of rigidbody");
 	}
+	void RigidBody::UpdatePtrs(Vec2* pPos)
+	{
+		pPosition = pPos;
+	}
 	void RigidBody::Process(float dt)
 	{
 		DCHECK_NOTNULL_F(pPosition, "position null :(");

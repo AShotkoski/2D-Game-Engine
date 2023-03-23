@@ -3,9 +3,10 @@
 #include <memory>
 #include <vector>
 
+class RigidBodyEntity;
+
 namespace Phys
 {
-	class RigidBody;
 
 	class System
 	{
@@ -16,12 +17,13 @@ namespace Phys
 		float GetGravity() const;
 		void SetGravity(float g);
 
-		void RegisterRigidBody(RigidBody* body);
-		void UnregisterRigidBody(RigidBody* body);
+		size_t RegisterRigidBodyEntity(RigidBodyEntity* ent);
+		void UnregisterRigidBodyEntity(RigidBodyEntity* ent);
+		void UpdateRigidBodyEntityPtr(RigidBodyEntity* newent, size_t idx);
 
 		void Process(float dt, size_t iterations = 1);
 	private:
-		std::vector<RigidBody* > RigidBodies;
+		std::vector<RigidBodyEntity* > RigidBodyEntities;
 	private:
 		float gravity = -9.81f; // m * s^-2
 	};

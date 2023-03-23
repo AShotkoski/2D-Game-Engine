@@ -1,4 +1,5 @@
 #include "System.h"
+#include <Entity/RigidBodyEntity.h>
 #include "RigidBody.h"
 #include <log.h>
 #include <algorithm>
@@ -13,16 +14,25 @@ namespace Phys
 	{
 		gravity = g;
 	}
-	void System::RegisterRigidBody(RigidBody* body)
+	size_t System::RegisterRigidBodyEntity(RigidBodyEntity* ent)
 	{
-		DCHECK_NOTNULL_F(body, "invalid rigid body registration.");
-		RigidBodies.push_back(std::move(body));
+		DCHECK_NOTNULL_F(ent, "invalid rigid body registration.");
+		RigidBodyEntities.push_back(std::move(ent));
+		return RigidBodyEntities.size() - 1;
 	}
-	void System::UnregisterRigidBody(RigidBody* body)
+	void System::UnregisterRigidBodyEntity(RigidBodyEntity* ent)
 	{
-		std::erase_if(RigidBodies,
-			[body](const RigidBody* d) { return d == body; });
+		//std::erase_if(RigidBodies,
+		//	[body](const RigidBody* d) { return d == body; });
 	}
+
+	void System::UpdateRigidBodyEntityPtr(RigidBodyEntity* newent, size_t idx)
+	{
+		DCHECK_F(idx < RigidBodyEntities.size(), "incorrect index to rigid body");
+		DCHECK_NOTNULL_F(newent, "new ent cannot be null");
+		RigidBodyEntities[idx] = newent;
+	}
+
 	void System::Process(float dt, size_t iterations)
 	{
 		DCHECK_F(iterations > 0, "Cannot have 0 iterations");
@@ -30,18 +40,18 @@ namespace Phys
 
 		// Having the policy be a lambda gives us the option to add an overload of process        
 		// that could inject its own policy in the future. (and we get to use for_each)
-		const auto policy = [this, dt](std::shared_ptr<RigidBody>& body)
-		{
-			body->acceleration += this->GetGravity();
-			body->Process(dt);
-		};
+		//const auto policy = [this, dt](std::shared_ptr<RigidBody>& body)
+		//{
+			//body->acceleration += this->GetGravity();
+			//body->Process(dt);
+		//};
 		for (size_t i = 0; i < iterations; i++)
 		{
 			//std::for_each(RigidBodies.begin(), RigidBodies.end(), policy);
-			for (auto& b : RigidBodies)
+			for (auto& e : RigidBodyEntities)
 			{
-				b->Process(dt);
-				
+				e->pGetBody()->Process(dt);
+				e->UpdateModel();
 			}
 		}
 	}
