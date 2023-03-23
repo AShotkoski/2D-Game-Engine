@@ -14,7 +14,7 @@ Game::Game()
 	for ( size_t i = 0; i < 100; i++ )
 	{
 		auto randvec = Vec2{ NumberFactory::RandomReal( -100.f,100.f ),NumberFactory::RandomReal( -2.f,100.f ) };
-		balls.emplace_back( gfx, randvec, NumberFactory::RandomReal(0.1f, 2.f) );
+		balls.emplace_back( gfx, &physicsScene ,randvec, NumberFactory::RandomReal(0.1f, 2.f) );
 	}
 	DLOG_F( INFO, "created" );
 }
@@ -51,14 +51,6 @@ void Game::UpdateLogic()
 					balls.pop_back();
 			}
 		}
-	}
-	if ( wnd.kbd.KeyIsPressed( 'N' ) )
-	{
-		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
-		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
-		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
-		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
-		balls.emplace_back( gfx, Vec2{ NumberFactory::RandomReal( -10.f,10.f ), NumberFactory::RandomReal( -2.f,10.f ) }, NumberFactory::RandomReal( 0.1f, 1.2f ) );
 	}
 
 	if ( wnd.kbd.KeyIsPressed( 'W' ) )

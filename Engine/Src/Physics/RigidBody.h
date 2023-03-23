@@ -1,20 +1,23 @@
 #pragma once
 #include "Vec2.h"
 
-class RigidBody
+namespace Phys
 {
-public:
-	void Update( float dt );
-protected:
-	RigidBody( float m, Vec2& pos, Vec2 v, Vec2 a )
-		: position( pos )
-		, velocity( v )
-		, acceleration( a )
-		, mass( m )
-	{}
-private:
-	float mass;
-	Vec2& position;
-	Vec2 velocity;
-	Vec2 acceleration;
-};
+	class RigidBody
+	{
+		friend class System;
+	public:
+		RigidBody(float m, Vec2& pos, Vec2 v, Vec2 a);
+	private:
+		void Process(float dt);
+	private:
+		// The vars that are refs are because the base entity that owns this rigidbody
+		// is what owns the data for it and it is likely shared with other classes
+		// that use the entity.
+		float mass;
+		Vec2& position;
+		Vec2 velocity;
+		Vec2 acceleration;
+	};
+
+}

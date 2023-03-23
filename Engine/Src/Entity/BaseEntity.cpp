@@ -2,6 +2,7 @@
 #include <log.h>
 #include <Render/Renderer.h>
 #include <Draw/Drawable.h>
+#include <Physics/RigidBody.h>
 
 BaseEntity::BaseEntity( Graphics& gfx, std::shared_ptr<Drawable> model,
 						Vec2 pos, float width, float height, float rotation)
@@ -18,7 +19,7 @@ BaseEntity::BaseEntity( Graphics& gfx, std::shared_ptr<Drawable> model,
 	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
 }
 
-BaseEntity::BaseEntity(BaseEntity&& src)
+BaseEntity::BaseEntity(BaseEntity&& src) noexcept
 	: gfx(src.gfx)
 	, position(src.position)
 	, rotation(src.rotation)

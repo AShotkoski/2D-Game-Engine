@@ -129,6 +129,12 @@
     <ClInclude Include="Src\Binds\BindableCodex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Physics\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Entity\RigidBodyEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Binds\IndexBuffer.cpp">
@@ -207,6 +213,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Entity\BaseEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Physics\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Entity\RigidBodyEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

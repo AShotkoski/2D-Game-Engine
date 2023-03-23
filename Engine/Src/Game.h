@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Window.h"
 #include "Util/FrameTimer.h"
+#include <Physics/System.h>
 #include <Entity/Ball.h>
 
 class Game
@@ -18,6 +19,7 @@ private:
 	Window wnd;
 	Graphics& gfx;
 	FrameTimer ft;
+	Phys::System physicsScene;
 private:
 	float dt = 0.f;
 	float adj_dt = 0.f;

@@ -1,12 +1,16 @@
 #pragma once
-#include "BaseEntity.h"
+#include "RigidBodyEntity.h"
 
 class Graphics;
+namespace Phys
+{
+	class System;
+}
 
-class Ball : public BaseEntity
+class Ball : public RigidBodyEntity
 {
 public:
-	Ball( Graphics& gfx, Vec2 pos, float radius );
+	Ball( Graphics& gfx, Phys::System* physics,  Vec2 pos, float radius = 1.f, float mass = 1.f );
 	void Update( float dt )
 	{
 		calcAcc(dt);
