@@ -9,9 +9,9 @@ class Renderer
 {
 public:
 	Renderer() = default;
-	void RegisterDrawable(std::shared_ptr<Drawable> pDrawable );
-	void DestroyDrawable( const Drawable* pDrawable );
+	void RegisterDrawable(Drawable* pDrawable );
+	void UnregisterDrawable( const Drawable* pDrawable );
 	void Execute( Graphics& gfx ) const;
 private:
-	std::vector<std::shared_ptr<Drawable>> drawables;
+	std::vector<Drawable*> drawablePtrs;
 };

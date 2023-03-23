@@ -13,10 +13,10 @@ public:
 	Ball( Graphics& gfx, Phys::System* physics,  Vec2 pos, float radius = 1.f, float mass = 1.f );
 	void Update( float dt )
 	{
-		calcAcc(dt);
-		vel += acc * dt;
-		shittybounce( -6.f );
-		position += vel * dt;
+		//calcAcc(dt);
+		//vel += acc * dt;
+		//shittybounce( -6.f );
+		//position += vel * dt;
 		UpdateModel();
 	}
 	void shittybounce( float floor_level )

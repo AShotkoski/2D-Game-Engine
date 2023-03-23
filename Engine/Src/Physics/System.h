@@ -16,12 +16,12 @@ namespace Phys
 		float GetGravity() const;
 		void SetGravity(float g);
 
-		void RegisterRigidBody(std::shared_ptr<RigidBody> body);
+		void RegisterRigidBody(RigidBody* body);
 		void UnregisterRigidBody(RigidBody* body);
 
-		void Process(float dt, size_t iterations);
+		void Process(float dt, size_t iterations = 1);
 	private:
-		std::vector<std::shared_ptr<RigidBody>> RigidBodies;
+		std::vector<RigidBody* > RigidBodies;
 	private:
 		float gravity = -9.81f; // m * s^-2
 	};

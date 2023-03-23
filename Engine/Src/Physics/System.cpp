@@ -13,17 +13,15 @@ namespace Phys
 	{
 		gravity = g;
 	}
-	void System::RegisterRigidBody(std::shared_ptr<RigidBody> body)
+	void System::RegisterRigidBody(RigidBody* body)
 	{
-		DCHECK_F((bool)body, "invalid rigid body registration.");
+		DCHECK_NOTNULL_F(body, "invalid rigid body registration.");
 		RigidBodies.push_back(std::move(body));
-		static int n = 0;
-		LOG_F(INFO, "registered %i", ++n);
 	}
 	void System::UnregisterRigidBody(RigidBody* body)
 	{
 		std::erase_if(RigidBodies,
-			[body](const std::shared_ptr<RigidBody>& d) { return d.get() == body; });
+			[body](const RigidBody* d) { return d == body; });
 	}
 	void System::Process(float dt, size_t iterations)
 	{
@@ -32,13 +30,19 @@ namespace Phys
 
 		// Having the policy be a lambda gives us the option to add an overload of process        
 		// that could inject its own policy in the future. (and we get to use for_each)
-		const auto policy = [&](std::shared_ptr<RigidBody>& body)
+		const auto policy = [this, dt](std::shared_ptr<RigidBody>& body)
 		{
+			body->acceleration += this->GetGravity();
 			body->Process(dt);
 		};
 		for (size_t i = 0; i < iterations; i++)
 		{
-			std::for_each(RigidBodies.begin(), RigidBodies.end(), policy);
+			//std::for_each(RigidBodies.begin(), RigidBodies.end(), policy);
+			for (auto& b : RigidBodies)
+			{
+				b->Process(dt);
+				
+			}
 		}
 	}
 }

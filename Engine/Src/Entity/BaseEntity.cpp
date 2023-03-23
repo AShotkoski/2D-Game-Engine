@@ -4,7 +4,7 @@
 #include <Draw/Drawable.h>
 #include <Physics/RigidBody.h>
 
-BaseEntity::BaseEntity( Graphics& gfx, std::shared_ptr<Drawable> model,
+BaseEntity::BaseEntity( Graphics& gfx, std::unique_ptr<Drawable> model,
 						Vec2 pos, float width, float height, float rotation)
 	: position(pos)
 	, width(width)
@@ -15,7 +15,7 @@ BaseEntity::BaseEntity( Graphics& gfx, std::shared_ptr<Drawable> model,
 {
 	DCHECK_F( (bool)pModel, "invalid model on creation of base entity" );
 
-	gfx.renderer.RegisterDrawable(  std::ref(pModel)  );
+	gfx.renderer.RegisterDrawable(  pModel.get()  );
 	pModel->UpdateTransformBuffer( position, rotation, width, height, gfx );
 }
 
@@ -38,6 +38,6 @@ BaseEntity::~BaseEntity() noexcept
 {
 	if (pModel)
 	{
-		gfx.renderer.DestroyDrawable(pModel.get());
+		gfx.renderer.UnregisterDrawable(pModel.get());
 	}
 }

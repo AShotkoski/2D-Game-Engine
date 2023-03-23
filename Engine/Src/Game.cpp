@@ -11,7 +11,7 @@ Game::Game()
 	: wnd( ScreenWidth, ScreenHeight, WindowTitle )
 	, gfx( wnd.GFX() )
 {
-	for ( size_t i = 0; i < 100; i++ )
+	for ( size_t i = 0; i < 1; i++ )
 	{
 		auto randvec = Vec2{ NumberFactory::RandomReal( -100.f,100.f ),NumberFactory::RandomReal( -2.f,100.f ) };
 		balls.emplace_back( gfx, &physicsScene ,randvec, NumberFactory::RandomReal(0.1f, 2.f) );
@@ -81,9 +81,10 @@ void Game::UpdateLogic()
 		}
 	}
 
-	for ( auto& b : balls )
+	physicsScene.Process(dt);
+	for (auto& b : balls)
 	{
-		b.Update( adj_dt );
+		b.Update(dt);
 	}
 }
 
