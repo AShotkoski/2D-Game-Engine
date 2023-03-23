@@ -25,6 +25,6 @@ protected:
 	RigidBodyEntity(const RigidBodyEntity& src) = delete;
 	RigidBodyEntity(RigidBodyEntity&& src);
 private:
-	Phys::System*& pPhysicsScene;
+	Phys::System* pPhysicsScene;
 	std::shared_ptr<Phys::RigidBody> body;
 };

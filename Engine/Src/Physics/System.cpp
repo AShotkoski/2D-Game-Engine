@@ -17,6 +17,8 @@ namespace Phys
 	{
 		DCHECK_F((bool)body, "invalid rigid body registration.");
 		RigidBodies.push_back(std::move(body));
+		static int n = 0;
+		LOG_F(INFO, "registered %i", ++n);
 	}
 	void System::UnregisterRigidBody(RigidBody* body)
 	{

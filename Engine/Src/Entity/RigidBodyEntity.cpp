@@ -19,7 +19,8 @@ RigidBodyEntity::RigidBodyEntity(
 	DCHECK_F((bool)body, "Null body in creation of rigid body entity");
 	DCHECK_NOTNULL_F(scene, "null scene in creation of rigid body entity");
 
-	scene->RegisterRigidBody(std::ref(body));
+	scene->RegisterRigidBody(body);
+	
 }
 
 RigidBodyEntity::~RigidBodyEntity() noexcept
